@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comics Universe</title>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}" />
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar glass" style="height: 70px">
+        <span>
+            <a href="#home" style="display: flex; align-items: center">
+                <img class="img2" src="{{ url_for('static', filename='img/mountain.png') }}" width="40" style="margin: -25px -10px -25px -20px" />
+                <h1 class="logo"> COMICS</h1>
+            </a>
+        </span>
+        <ul class="nav-links">
+            <li><a href="#home" id="pri" class="active cir_border">Home</a></li>
+            <li><a href="#about" id="sec" class="cir_border">About</a></li>
+            <li><a href="#comics" id="tri" class="cir_border">Comics</a></li>
+            <li>
+                <div>
+                    <input type="checkbox" class="checkbox dark" id="checkbox" />
+                    <label for="checkbox" class="label">
+                        <i class="fa fa-moon-o"></i>
+                        <i class="fa fa-sun-o"></i>
+                        <div class="ball"></div>
+                    </label>
+                </div>
+            </li>
+        </ul>
+        <img src="{{ url_for('static', filename='img/menu-btn.png') }}" alt="" class="menu-btn" />
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Header -->
+    <header id="home">
+        <div class="header-content">
+            <h2 id="quote">Explore the Comics World</h2>
+            <div class="line"></div>
+            <h1>Dive into the Universe of Comic Books 🚀</h1>
+            <a href="{{ url_for('gallery') }}" class="ctn">Explore more</a>
+        </div>
+    </header>
+    <!-- Header -->
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="title">
+                <h1 class="dark">ABOUT US</h1>
+                <div class="line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img id="about-img" src="{{ url_for('static', filename='img/about.webp') }}" alt="Comic Universe" />
+                    <div id="about-img-error" style="color: #e50914; text-align: center; display: none; margin-top: 10px;">
+                        Failed to load image.
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>Welcome to the Comics </h2>
+                    <p>
+                        <strong>Comics Universe</strong> is a nano project developed as part of my <strong>MCA academic curriculum</strong>. It’s designed to provide a fun and inclusive comic reading experience, especially for children in <strong>BUDS schools</strong> and <strong>disabled students</strong> who benefit from visual storytelling.
+                    </p>
+                    <p>
+                        The platform features a combination of <em>curated comics</em> and our own original creation, <em><strong>Spectrum Squad</strong></em>. Created using generative AI tools for both images and dialogues, Spectrum Squad is a unique story built to inspire and engage readers of all ages.
+                    </p>
+                    <p>
+                        In addition to our original comic, the platform also hosts popular titles like <em>Batman</em> and <em>Spiderman</em>, which were sourced from public repositories to expand our library and offer diverse content.
+                    </p>
+                    <p>
+                        
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About -->
+
+    <!-- Comics -->
+    <section class="comics" id="comics">
+        <div class="container">
+            <div class="title">
+                <h1 class="dark">ONLINE COMICS</h1>
+                <div class="line"></div>
+            </div>
+            <div class="row">
+                {% for comic in comics %}
+                <article class="card col comics-style">
+                    <img class="card-img" src="{{ url_for('static', filename=comic.cover) }}" alt="{{ comic.title }} cover" />
+                    <h4 class="dark">{{ comic.title }}</h4>
+                    <p class="font-color">{{ comic.description }}</p>
+                    <a href="{{ url_for('comic_details', id=comic.id) }}" class="ctn">READ ME</a>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!-- Comics -->
+
+    <!-- Up Scroll -->
+    <i class="arrow" onclick="topFunction()" id="upbtn"></i>
+    <!-- End -->
+
+    <!-- Footer -->
+    <section class="footer">
+        <span>Created By TEAM THREE | © 2025 All rights reserved.</span>
+        <div class="social">
+            <li></li>
+        </div>
+    </section>
+    <!-- Footer -->
+
+    <script>
+        const menuBtn = document.querySelector(".menu-btn");
+        const navlinks = document.querySelector(".nav-links");
+
+        menuBtn.addEventListener("click", () => {
+            navlinks.classList.toggle("mobile-menu");
+        });
+
+        // Handle about image error
+        document.getElementById('about-img').onerror = () => {
+            document.getElementById('about-img-error').style.display = 'block';
+            document.getElementById('about-img').style.display = 'none';
+        };
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
