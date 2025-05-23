@@ -17,7 +17,7 @@ Screenshots
 Below are placeholders for six screenshots showcasing key features of Comics Universe. (Note: Add actual screenshot files to the screenshots/ directory and update the paths below.)
 
 Homepage OverviewDisplays the header with the "Explore More" button (hover to see zoom-in effect), navbar, and featured comics section.
-![Homepage](screenshots/homepage.png)
+![Homepage](screenshots/1.png)
 About SectionShows the About section with the comic-themed image (hover for zoom-in animation) and project description.
 ![Gallery](screenshots/gallery.png)
 Comics SectionHighlights the three featured comics with hover zoom-in effects on each card.
